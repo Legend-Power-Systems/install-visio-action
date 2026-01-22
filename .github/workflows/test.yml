@@ -14,6 +14,7 @@ jobs:
         shell: pwsh
         run: |
           $visio = New-Object -ComObject Visio.Application
+          $visio.Visible = $false
           if ($visio -ne $null) {
               Write-Host "Visio installed successfully."
               $visio.Quit()

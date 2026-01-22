@@ -21,9 +21,6 @@ Remove-Item -Path $odt_xmls_path -Force
 echo "Downloading install files"
 & $setup_path /download $config_path
 
-echo "Downloading install files"
-& $setup_path /download $config_path
-
 echo "Running installer"
 & $setup_path /configure $config_path
 
