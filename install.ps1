@@ -12,8 +12,18 @@ Invoke-WebRequest -Uri $odt_link -OutFile $odt_exe
 echo "Extracting setup"
 & $odt_exe /quiet /extract:$odt_extract_path
 
-# Seems necessary for the cleanup to work?
-sleep 1
+echo "Waiting for extraction to complete"
+$timeout = 30
+$elapsed = 0
+while (-not (Test-Path $setup_path) -and $elapsed -lt $timeout) {
+    Start-Sleep -Milliseconds 500
+    $elapsed += 0.5
+}
+
+if (-not (Test-Path $setup_path)) {
+    Write-Error "Setup file not found after $timeout seconds"
+    exit 1
+}
 
 echo "Cleaning up default ODT configs"
 Remove-Item -Path $odt_xmls_path -Force
