@@ -1,0 +1,15 @@
+<Configuration ID="72cfb1ba-dc18-4fae-af3d-fa3918db9305">
+  <Add OfficeClientEdition="64" Channel="Current">
+    <Product ID="VisioProRetail">
+      <Language ID="en-us" />
+      <ExcludeApp ID="Groove" />
+      <ExcludeApp ID="OneDrive" />
+    </Product>
+  </Add>
+  <Property Name="SharedComputerLicensing" Value="0" />
+  <Property Name="FORCEAPPSHUTDOWN" Value="TRUE" />
+  <Property Name="DeviceBasedLicensing" Value="0" />
+  <Property Name="SCLCacheOverride" Value="0" />
+  <Updates Enabled="FALSE" />
+  <Display Level="None" AcceptEULA="TRUE" />
+</Configuration>
