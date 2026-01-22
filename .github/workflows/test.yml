@@ -5,19 +5,33 @@ jobs:
   test-visio-install:
     runs-on: windows-latest
     steps:
-      #- uses: actions/checkout@v6
+      - uses: actions/checkout@v6
 
-      #- name: Install Visio
-      #  uses: ./
+      - name: Install Visio
+        uses: ./
 
-      - name: Verify Visio Installation
+      - name: Install officetopdf
+        run: choco install office-to-pdf -y
+
+      - name: Download sample drawing and export to PDF
         shell: pwsh
         run: |
-          $visio = New-Object -ComObject Visio.Application
-          $visio.Visible = $false
-          if ($visio -ne $null) {
-              Write-Host "Visio installed successfully."
-              $visio.Quit()
-          } else {
-              throw "Visio installation failed."
-          }
+          ls
+          echo "Downloading sample Visio drawing"
+          Invoke-WebRequest -Uri "https://omextemplates.content.office.net/support/templates/en-us/tf16403437.vsdx" -OutFile "drawing.vsdx" 
+          ls
+          echo "Converting to pdf"
+          officetopdf.exe .\drawing.vsdx .\out.pdf
+          ls
+
+      #- name: Verify Visio Installation
+      #  shell: pwsh
+      #  run: |
+      #    $visio = New-Object -ComObject Visio.Application
+      #    $visio.Visible = $false
+      #    if ($visio -ne $null) {
+      #        Write-Host "Visio installed successfully."
+      #        $visio.Quit()
+      #    } else {
+      #        throw "Visio installation failed."
+      #    }
