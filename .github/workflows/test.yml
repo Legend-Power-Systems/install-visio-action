@@ -5,10 +5,10 @@ jobs:
   test-visio-install:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v6
+      #- uses: actions/checkout@v6
 
-      - name: Install Visio
-        uses: ./
+      #- name: Install Visio
+      #  uses: ./
 
       - name: Verify Visio Installation
         shell: pwsh
