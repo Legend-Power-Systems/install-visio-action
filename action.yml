@@ -1,0 +1,8 @@
+name: "Install Visio Action"
+description: "Installs Visio on Windows runners"
+
+runs:
+  using: "composite"
+  steps:
+    - shell: pwsh
+      run: .\install.ps1

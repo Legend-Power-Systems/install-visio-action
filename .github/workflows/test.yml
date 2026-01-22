@@ -1,0 +1,22 @@
+on:
+  push
+
+jobs:
+  test-visio-install:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Install Visio
+        uses: ./
+
+      - name: Verify Visio Installation
+        shell: pwsh
+        run: |
+          $visio = New-Object -ComObject Visio.Application
+          if ($visio -ne $null) {
+              Write-Host "Visio installed successfully."
+              $visio.Quit()
+          } else {
+              throw "Visio installation failed."
+          }
